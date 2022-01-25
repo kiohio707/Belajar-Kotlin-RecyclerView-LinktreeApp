@@ -1,4 +1,4 @@
-package com.example.linktreeapp
+package com.example.linktreeapp.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.linktreeapp.Model.LinkModel
+import com.example.linktreeapp.R
 
 class LinkAdapter (
     val items: List<LinkModel>,
@@ -13,8 +15,8 @@ class LinkAdapter (
     ): RecyclerView.Adapter<LinkAdapter.ViewHolder>(){
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val image = itemView.findViewById<ImageView>(R.id.image)
-        val title = itemView.findViewById<TextView>(R.id.tv_adapter_title)
+        val image = itemView.findViewById<ImageView>(R.id.iv_adapter_link)
+        val title = itemView.findViewById<TextView>(R.id.tv_adapter_link)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,7 +26,7 @@ class LinkAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.image.setImageResource(item.image)
-        holder.title.setText(item.title)
+        holder.title.text = item.title
 
         holder.itemView.setOnClickListener {
             listener.onClick(item)

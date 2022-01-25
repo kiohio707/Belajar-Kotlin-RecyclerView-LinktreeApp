@@ -18,7 +18,7 @@
 
         <ImageView
             tools:src="@drawable/ic_discord"
-            android:id="@+id/iv_adapter_image"
+            android:id="@+id/iv_adapter_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -26,14 +26,14 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/tv_adapter_title"
+            android:id="@+id/tv_adapter_link"
             android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toEndOf="@id/iv_adapter_image"
+            app:layout_constraintStart_toEndOf="@id/iv_adapter_link"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Discord" />
 

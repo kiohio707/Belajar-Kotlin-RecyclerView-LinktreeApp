@@ -1,4 +1,4 @@
-package com.example.linktreeapp
+package com.example.linktreeapp.Model
 
 data class LinkModel (
     val title: String,
