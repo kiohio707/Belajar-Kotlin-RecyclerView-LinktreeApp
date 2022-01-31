@@ -1,24 +1,24 @@
 package com.example.linktreeapp.Activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.linktreeapp.Adapter.RandomAdapter
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import com.example.linktreeapp.R
+import com.example.linktreeapp.fragment.ImagesFragment
+import com.example.linktreeapp.fragment.NumbersFragment
+import com.example.linktreeapp.fragment.WordsFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class RandomActivity : AppCompatActivity() {
-    lateinit var recyclerView: RecyclerView
+class RandomActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+    lateinit var btmNavRandom: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_string)
+        setContentView(R.layout.activity_random)
 
         initView()
 
-        val strings = listOf<String>(
+        val strings = listOf(
             "Coba1",
             "Coba2",
             "Coba3",
@@ -26,16 +26,25 @@ class RandomActivity : AppCompatActivity() {
             "Coba5"
         )
 
-        Log.e("RandomActivity", "size ${strings.size}")
-
-        val randomAdapter = RandomAdapter(strings)
-
-        recyclerView.adapter = randomAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        btmNavRandom.setOnItemSelectedListener(this)
 
     }
 
     private fun initView() {
-        recyclerView = findViewById(R.id.recycler_view_random)
+        btmNavRandom = findViewById(R.id.btm_nav_random)
+
+        supportFragmentManager.beginTransaction().replace(R.id.frag_container_random, WordsFragment()).commit()
+
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        item.isChecked = true
+        when(item.itemId) {
+            R.id.menu_words -> supportFragmentManager.beginTransaction().replace(R.id.frag_container_random, WordsFragment()).commit()
+            R.id.menu_numbers -> supportFragmentManager.beginTransaction().replace(R.id.frag_container_random, NumbersFragment()).commit()
+            R.id.menu_images -> supportFragmentManager.beginTransaction().replace(R.id.frag_container_random, ImagesFragment()).commit()
+        }
+
+        return false
     }
 }
