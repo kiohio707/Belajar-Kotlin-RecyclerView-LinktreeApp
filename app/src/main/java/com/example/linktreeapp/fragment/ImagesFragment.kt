@@ -9,9 +9,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.linktreeapp.Adapter.ImagesAdapter
 import com.example.linktreeapp.R
+import com.example.linktreeapp.databinding.FragmentImagesBinding
 
 class ImagesFragment : Fragment() {
-    lateinit var rootView: View
+    lateinit var binding: FragmentImagesBinding
     lateinit var recyclerView: RecyclerView
     lateinit var imageAdapter:ImagesAdapter
     lateinit var listImage: MutableList<Int>
@@ -22,15 +23,20 @@ class ImagesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        rootView = inflater.inflate(R.layout.fragment_images, null, false)
+        binding = FragmentImagesBinding.inflate(inflater, container, false)
 
-        initView()
-        return rootView
+        return binding.root
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        initView()
+    }
+
     private fun initView() {
-        recyclerView = rootView.findViewById(R.id.rec_view_images)
+        recyclerView = binding.recViewImages
 
         listImage = mutableListOf(
             R.drawable.photo1,
@@ -43,9 +49,9 @@ class ImagesFragment : Fragment() {
     }
 
     private fun setRecData() {
-        imageAdapter = ImagesAdapter(listImage)
+        imageAdapter = ImagesAdapter(requireContext(),listImage)
 
         recyclerView.adapter = imageAdapter
-        recyclerView.layoutManager = GridLayoutManager(rootView.context, 2)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
     }
 }
